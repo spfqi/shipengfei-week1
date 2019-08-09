@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<mapper namespace="com.shipengfei.week1.dao.PlantMapper">
+  <select id="selects"  resultType="com.shipengfei.week1.domain.Plant">
+  select p.*,c.cname from t_plant p left join t_cla c on p.cid=c.cid;
+  <where>
+    <if test="pname!=null and pname!=''">
+    and pname like '%${pname}%'
+    </if>
+  </where>
+  </select>
+  
+  <insert id="add" parameterType="com.shipengfei.week1.domain.Plant">
+   insert into t_plant set pname=#{pname},desc=#{desc}
+  </insert>
+</mapper>
